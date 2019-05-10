@@ -1,0 +1,25 @@
+{
+    "name": "lingyuyizhipao/http",
+    "description": "对guzzle的二次封装",
+    "type": "library",
+    "require": {
+        "php": "^7.0",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "php": "^7.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hugo",
+            "email": "13147199592@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Lingyuyizhipao\\": "src/"
+        }
+    }
+}
