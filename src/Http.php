@@ -57,6 +57,6 @@ class Http extends Base
     }
     public function getFirstError()
     {
-        return $this->error[0]??'';
+        return $this->error[0]??[];
     }
 }
