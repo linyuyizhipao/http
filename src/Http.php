@@ -1,6 +1,9 @@
 <?php
+
 namespace Lingyuyizhipao;
+
 use GuzzleHttp\Client;
+
 /**
  * @property Http static $_instance
  * @property \GuzzleHttp\Client $http
@@ -24,39 +27,58 @@ class Http extends Base
         return self::$_instance;
     }
 
-    public function get(string $url,array $param=[])
+    /**
+     *
+     * @param string $url api完整http地址
+     * @param array $param get方式调取api的参数
+     * @return string
+     */
+    public function get($url, $param = [])
     {
-        try{
+        try {
             $client = $this->http;
-            $response = $client->request('GET', $url,['query'=>$param]);
-            return json_decode($response->getBody(),true);
-        }catch (\Exception $e){
+            $response = $client->request('GET', $url, ['query' => $param]);
+
+            return json_decode($response->getBody(), true);
+        } catch (\Exception $e) {
             $this->error[] = $e->getMessage();
             return false;
         }
 
     }
 
-    public function post($url,$param=[])
+    /**
+     * @param string $url api完整http地址
+     * @param array $param post方式调取api的参数
+     * @return string
+     */
+    public function post($url, $param = [])
     {
-        try{
+        try {
             $client = $this->http;
-            $response = $client->request('POST', $url,[
-                'form_params'=>$param
+            $response = $client->request('POST', $url, [
+                'form_params' => $param
             ]);
-            return json_decode($response->getBody(),true);
-        }catch (\Exception $e){
+            return json_decode($response->getBody(), true);
+        } catch (\Exception $e) {
             $this->error[] = $e->getMessage();
             return false;
         }
     }
 
+    /**
+     * @return array
+     */
     public function getError()
     {
         return $this->error;
     }
+
+    /**
+     * @return string
+     */
     public function getFirstError()
     {
-        return $this->error[0]??[];
+        return $this->error[0] ?? [];
     }
 }
